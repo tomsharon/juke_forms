@@ -1,18 +1,19 @@
-app.controller('PlaylistsCtrl', function ($scope, PlaylistFactory) {
+app.controller('PlaylistCtrl', function ($scope, PlaylistFactory, $stateParams, PlayerFactory, SongFactory) {
 
-$scope.submit = function(){
+	PlaylistFactory.fetchOne($stateParams.playlistId)
+	.then(function(response) {
+		$scope.playlist = response.data
+		console.log("THIS IS MY PLAYLIST: ", $scope.playlist)
+	})
+	$scope.isCurrent = function (song) {
+		var current = PlayerFactory.getCurrentSong();
+		return current && current._id == song._id;
+	};
 
-    console.log(" i made a new playlist", $scope.playlist)
-    //$scope.playlist was defined by ng-model
-    PlaylistFactory.create($scope.playlist)
-    $scope.playlist = {
-        name: " "
-    };
-
-}
-
-
-
-
-
+	SongFactory.fetchAll()
+	.then(function(songs) {
+		console.log(songs)
+		$scope.songs = songs;
+	})
 });
+

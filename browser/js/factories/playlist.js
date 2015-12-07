@@ -49,6 +49,54 @@ app.factory('PlaylistFactory', function ($http) {
         });
     };
 
+    PlaylistFactory.fetchOne = function(id) {
+        return $http.get("/api/playlists/" + id)
+        .then(function(playlist) {
+            return playlist
+        })
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     return PlaylistFactory;
 
 });

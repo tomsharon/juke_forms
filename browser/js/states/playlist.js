@@ -1,7 +1,7 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('newPlaylist', {
-        url: '/playlists/new',
-        templateUrl: '/templates/addPlaylist.html',
-        controller: 'PlaylistsCtrl'
-    });
+	$stateProvider.state('playlist', {
+		url: '/playlists/:playlistId',
+		templateUrl: '/templates/playlist.html',
+		controller: 'PlaylistCtrl',
+	})
 });

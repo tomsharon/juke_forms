@@ -1,0 +1,49 @@
+<div>
+    <h3>{{ playlist.name }}</h3>
+    <div class="well">
+        <!-- ng-submit runs the submit function when a button with type submit is clicked. This is similar to putting an ng-click handler on the submit button itself -->
+        <form class="form-horizontal" ng-submit="submit()" name="myForm">
+            <fieldset>
+                <legend>Add a song</legend>
+                <div class="form-group">
+                    <label class="col-xs-2 control-label">Title</label>
+                    <div class="col-xs-10">
+                        <select name="songsList" ng-options="song as song.name for song in songs"></select>
+                    </div>
+                    <h2> {{name}} </h2>
+                <div class="form-group">
+                    <div class="col-xs-10 col-xs-offset-2">
+                        <br></br>
+                        <button ng-disabled="myForm.$invalid" type="submit" class="btn btn-success">Add song</button>
+                    </div>
+                </div>
+                <div ng-show="!playlist.name && myForm.$dirty && myForm.$touched" class="alert alert-warning">Please Enter a Valid Title
+                </div>
+            </fieldset>
+        </form>
+    </div>    
+    <table class='table' ng-show="playlist.songs.length">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Artists</th>
+                <th>Genres</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="song in playlist.songs" ng-class="{active: isCurrent(song)}">
+                <td>
+                    <button ng-hide="isCurrent(song)" ng-click="start(song)" class="btn btn-default btn-xs">
+                        <span class="glyphicon glyphicon-play"></span>
+                    </button>
+                </td>
+                <td>{{ song.name }}</td>
+                <td><span ng-repeat="artist in song.artists">{{ artist.name }} </span></td>
+                <td>{{ song.genres.join(', ') }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <small ng-hide="playlist.songs.length">No songs.</small>
+    <hr>
+</div>
