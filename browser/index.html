@@ -15,10 +15,12 @@
 	<script src="/js/controllers/artist.js"></script>
 	<script src="/js/controllers/artists.js"></script>
 	<script src="/js/controllers/playlist.js"></script>
+	<script src="/js/controllers/sidebar.js"></script>
 	<script src="/js/factories/player.js"></script>
 	<script src="/js/factories/album.js"></script>
 	<script src="/js/factories/song.js"></script>
 	<script src="/js/factories/artist.js"></script>
+	<script src="/js/factories/playlist.js"></script>
 	<script src="/js/states/albums.js"></script>
 	<script src="/js/states/album.js"></script>
 	<script src="/js/states/artists.js"></script>
@@ -31,7 +33,7 @@
 <body ng-app="juke">
 	<div id="main" class="container-fluid">
 
-		<div class="col-xs-2">
+		<div ng-controller="SidebarCtrl" class="col-xs-2">
 			<sidebar>
 				<section>
 					<h4 ui-sref-active="active" class="playlist-item">
@@ -49,6 +51,14 @@
 					<p>
 						<a class="btn btn-primary btn-block" ui-sref="newPlaylist"><span class="glyphicon glyphicon-plus"></span> PLAYLIST</a>
 					</p>
+					<ul>
+						<li ng-repeat="playlist in playlists">
+							<p class="playlist-item">
+	   							<a>{{playlist.name}}</a>
+					    	</p>
+						</li>
+					</ul>
+
 				</section>
 			</sidebar>
 		</div>

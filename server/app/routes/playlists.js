@@ -14,8 +14,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   mongoose.model('Playlist')
+    //req.body would be $scope.playlist when we make a new playlist
     .create(req.body)
     .then(function(playlist) {
+      console.log("playlist", playlist)
       res.status(201).json(playlist)
     })
     .then(null, next)

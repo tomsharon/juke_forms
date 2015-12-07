@@ -6,19 +6,24 @@
  -->
 
     <div class="well">
-    <form class="form-horizontal">
+        <!-- ng-submit runs the submit function when a button with type submit is clicked. This is similar to putting an ng-click handler on the submit button itself -->
+    <form class="form-horizontal" ng-submit="submit()" name="myForm">
         <fieldset>
             <legend>New Playlist</legend>
             <div class="form-group">
                 <label class="col-xs-2 control-label">Title</label>
                 <div class="col-xs-10">
-                    <input class="form-control" type="text">
+                    <!-- ng-model defines playlist.name and attaches it to $scope -->
+                    <input ng-maxlength="16" required ng-model="playlist.name" class="form-control" type="text">
                 </div>
-            </div>
+                <h2> {{name}} </h2>
             <div class="form-group">
                 <div class="col-xs-10 col-xs-offset-2">
-                    <button type="submit" class="btn btn-success">Create Playlist</button>
+                    <!-- disabled when myForm's input is invalid (css classes change) -->
+                    <button ng-disabled="myForm.$invalid" type="submit" class="btn btn-success">Create Playlist</button>
                 </div>
+            </div>
+            <div ng-show="!playlist.name && myForm.$dirty && myForm.$touched" class="alert alert-warning">Please Enter a Valid Title
             </div>
         </fieldset>
     </form>
