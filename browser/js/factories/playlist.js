@@ -57,7 +57,8 @@ app.factory('PlaylistFactory', function ($http) {
     }
 
     PlaylistFactory.addSong = function(playlistID, song) {
-        return $http.post('/'+ playlistID + '/songs')
+        console.log("song", song)
+        return $http.post('/api/playlists/'+ playlistID + '/songs', song)
         .then(function(song) {
             console.log("returned song", song)
             return song
