@@ -8,9 +8,8 @@
                 <div class="form-group">
                     <label class="col-xs-2 control-label">Title</label>
                     <div class="col-xs-10">
-                        <select name="songsList" ng-options="song as song.name for song in songs"></select>
+                        <select ng-model="selectedItem" ng-options="song.name for song in songs"></select>
                     </div>
-                    <h2> {{name}} </h2>
                 <div class="form-group">
                     <div class="col-xs-10 col-xs-offset-2">
                         <br></br>
@@ -21,7 +20,7 @@
                 </div>
             </fieldset>
         </form>
-    </div>    
+    </div>
     <table class='table' ng-show="playlist.songs.length">
         <thead>
             <tr>

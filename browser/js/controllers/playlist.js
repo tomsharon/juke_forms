@@ -15,5 +15,12 @@ app.controller('PlaylistCtrl', function ($scope, PlaylistFactory, $stateParams, 
 		console.log(songs)
 		$scope.songs = songs;
 	})
+
+	$scope.submit = function(){
+		//$scope.selectedItem only exists within the submit method, because pressing submit is what actually creates $scope.selectedItem.
+		console.log($scope.selectedItem)
+		PlaylistFactory.addSong($stateParams.playlistId, $scope.selectedItem)
+
+	}
 });
 
